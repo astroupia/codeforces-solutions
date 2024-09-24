@@ -1,7 +1,7 @@
 def solve():
-    n = int(input())
+    x = int(input())
     scores = {}
-    for _ in range(n):
+    for _ in range(x):
         team = input()
         if team in scores:
             scores[team] += 1
