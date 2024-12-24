@@ -1,31 +1,30 @@
 aSize, bSize = map(int, input().split())
 firstArray = list(map(int, input().split()))
 secondArray = list(map(int, input().split()))
-
-def findSmallArray(a, b):
-    j, i = 0, 0
-    count = 0
-
-    while i < len(a) and j < len(b):
-        if a[i] < b[j]:
-            i += 1
-        elif a[i] > b[j]:
-            j += 1
+ 
+def findEqual(a, b):
+    k, l, count = 0, 0, 0
+    
+    while k < len(a) and l < len(b):
+        if a[k] < b[l]:
+            k += 1
+        elif a[k] > b[l]:
+            l += 1
         else: 
+            ck = a[k]
+            cl = b[l]
             countA, countB = 0, 0
-            currentA = a[i]
-            currentB = b[j]
-
-            while i < len(a) and a[i] == currentA:
-                countA += 1
-                i += 1
             
-            while j < len(b) and b[j] == currentB:
+            while k < len(a) and a[k] == ck:
+                k += 1
+                countA += 1
+            
+            while l < len(b)  and b[l] == cl:
+                l += 1
                 countB += 1
-                j += 1
-
+                
             count += countA * countB
-
     return count
-
-print(findSmallArray(firstArray, secondArray))
+ 
+result = findEqual(firstArray, secondArray)
+print(result)
