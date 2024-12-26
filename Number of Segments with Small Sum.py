@@ -1,19 +1,14 @@
-def number_of_segments_with_small_sum(n, s, a):
-    left = 0
-    current_sum = 0
-    count = 0
+length, s = map(int, input().split())
+nums = list(map(int, input().split()))
 
-    for right in range(n):
-        current_sum += a[right]
+def goodSum(s, nums, len):
+    a, res, x = 0, 0, 0
+    for i in range(len) :
+        x += nums[i]
+        while x >= s:
+            x -= nums[a]
+            a += 1
+        res += a
+    return res
 
-        while current_sum > s:
-            current_sum -= a[left]
-            left += 1
-
-        count += right - left + 1
-
-    print(count)
-
-n, s = map(int, input().split())
-a = list(map(int, input().split()))
-number_of_segments_with_small_sum(n, s, a)
+print(goodSum(s, nums, length))
