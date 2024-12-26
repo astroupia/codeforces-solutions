@@ -1,18 +1,19 @@
-def segment_with_big_sum(n, s, a):
-    left = 0
-    current_sum = 0
-    min_length = float('inf')
+import sys
+length, s = map(int, input().split())
+nums = list(map(int, input().split()))
 
-    for right in range(n):
-        current_sum += a[right]
+def goodSum(s, nums, len):
+    a, res, x = 0, sys.maxsize, 0
+    for i in range(0, len) :
+        x += nums[i]
+        while x >= s:
+            res = min(res, i - a +1)
+            x -= nums[a]
+            a += 1
 
-        while current_sum >= s:
-            min_length = min(min_length, right - left + 1)
-            current_sum -= a[left]
-            left += 1
+    if res != sys.maxsize:
+        return(res)
+    else:
+        return -1
 
-    print(min_length if min_length != float('inf') else -1)
-
-n, s = map(int, input().split())
-a = list(map(int, input().split()))
-segment_with_big_sum(n, s, a)
+print(goodSum(s, nums, length))
